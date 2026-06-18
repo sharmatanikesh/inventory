@@ -4,6 +4,8 @@ from pydantic import BaseModel, Field
 from app.interfaces.product import ProductServiceInterface
 from app.routers.deps import get_product_service
 
+from app.utils.exceptions import ProductNotFoundException
+
 router = APIRouter(prefix="/products", tags=["Products"])
 
 class ProductCreateRequest(BaseModel):
@@ -33,10 +35,7 @@ def get_product(
 ):
     product = service.get_product(product_id)
     if not product:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Product not found"
-        )
+        raise ProductNotFoundException()
     return product
 
 

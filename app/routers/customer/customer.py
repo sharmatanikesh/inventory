@@ -5,6 +5,8 @@ from pydantic import BaseModel, EmailStr, Field
 from app.interfaces.customer import CustomerServiceInterface
 from app.routers.deps import get_customer_service
 
+from app.utils.exceptions import CustomerNotFoundException
+
 router = APIRouter(prefix="/customers", tags=["Customers"])
 
 class CustomerCreateRequest(BaseModel):
@@ -34,10 +36,7 @@ def get_customer(
 ):
     customer = service.get_customer(customer_id)
     if not customer:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Customer not found"
-        )
+        raise CustomerNotFoundException()
     return customer
 
 

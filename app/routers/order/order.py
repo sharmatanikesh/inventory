@@ -5,6 +5,8 @@ from pydantic import BaseModel, Field
 from app.interfaces.order import OrderServiceInterface
 from app.routers.deps import get_order_service
 
+from app.utils.exceptions import OrderNotFoundException
+
 router = APIRouter(prefix="/orders", tags=["Orders"])
 
 class OrderItemRequest(BaseModel):
@@ -32,10 +34,7 @@ def get_order(
 ):
     order = service.get_order(order_id)
     if not order:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Order not found"
-        )
+        raise OrderNotFoundException()
     return order
 
 
