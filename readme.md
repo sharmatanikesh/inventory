@@ -49,9 +49,10 @@ make docker-down
 ```
 
 ### Accessing the Backend
-Once started via Docker Compose, the backend services will be available at:
-* **Backend API URL**: `http://localhost:8000`
-* **Interactive API Documentation (Swagger)**: [http://localhost:8000/docs](http://localhost:8000/docs)
+* **Local Backend API**: `http://localhost:8000`
+* **Local Interactive API Docs (Swagger)**: [http://localhost:8000/docs](http://localhost:8000/docs)
+* **Live Production API**: `https://inventory-backend-production-03bc.up.railway.app`
+* **Live Production API Docs (Swagger)**: [https://inventory-backend-production-03bc.up.railway.app/docs](https://inventory-backend-production-03bc.up.railway.app/docs)
 
 ### Debugging & Inspection Commands
 The `Makefile` includes dedicated shortcuts for inspecting the database and container logs:
