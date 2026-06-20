@@ -48,6 +48,17 @@ To stop all running containerized services and preserve persistent data:
 make docker-down
 ```
 
+### Accessing the Backend
+Once started via Docker Compose, the backend services will be available at:
+* **Backend API URL**: `http://localhost:8000`
+* **Interactive API Documentation (Swagger)**: [http://localhost:8000/docs](http://localhost:8000/docs)
+
+### Debugging & Inspection Commands
+The `Makefile` includes dedicated shortcuts for inspecting the database and container logs:
+* **Open Database Shell**: Run `make db-shell` to access an interactive PostgreSQL terminal (`psql`) directly inside the database container.
+* **List Database Tables**: Run `make db-tables` to list all relations currently created in the database.
+* **Stream Backend Logs**: Run `make backend-logs` to stream live stdout logs from the backend container.
+
 ---
 
 ## 2. Local Manual Setup
