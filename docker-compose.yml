@@ -24,8 +24,9 @@ services:
   # FastAPI Backend Service
   backend:
     build:
-      context: ./inventory-backend
+      context: ./backend
       dockerfile: Dockerfile
+    image: sharmatanikesh/inventory-backend:latest
     container_name: inventory_backend
     restart: always
     depends_on:
@@ -42,10 +43,11 @@ services:
   # React Frontend Service
   frontend:
     build:
-      context: ./inventory-frontend
+      context: ./frontend
       dockerfile: Dockerfile
       args:
         - VITE_API_URL=http://backend:8000
+    image: sharmatanikesh/inventory-frontend:latest
     container_name: inventory_frontend
     restart: always
     depends_on:
